@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문유정 — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,500&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Pretendard Fallback';
+    src: local('Apple SD Gothic Neo'), local('Malgun Gothic');
+  }
+
+  :root{
+    --paper: #f5f4ef;
+    --paper-deep: #eeece4;
+    --ink: #1a1b1a;
+    --muted: #6c6a62;
+    --line: #d9d6cb;
+    --accent: #2e4d3a;
+    --accent-soft: #3f6650;
+    --gold: #b8862f;
+    --gold-soft: #ddb676;
+    --max: 1080px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Pretendard', 'Pretendard Fallback', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .en{ font-family: 'Fraunces', serif; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(245,244,239,0.86);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .nav-name{
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-decoration:none;
+  }
+  .nav-links{
+    display:flex;
+    gap: 24px;
+    font-size: 0.92rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color: var(--muted);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-links a:hover{ color: var(--ink); border-color: var(--ink); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 72px;
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 5.6vw, 4.2rem);
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .hero .role{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--accent-soft);
+    margin: 0 0 28px;
+  }
+  .hero p.tagline{
+    font-size: 1.15rem;
+    color: var(--ink);
+    max-width: 46ch;
+    margin: 0;
+  }
+  .hero-visual{
+    width: 100%;
+    aspect-ratio: 1 / 0.85;
+  }
+  .hero-visual svg{ width:100%; height:100%; }
+
+  .path-rough{
+    fill:none;
+    stroke: var(--muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.55;
+    animation: fadeOut 1.4s ease forwards;
+    animation-delay: .6s;
+  }
+  .path-smooth{
+    fill:none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: draw 1.6s ease forwards;
+    animation-delay: .5s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset: 0; } }
+  @keyframes fadeOut{ to{ opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .path-rough{ animation:none; opacity:0; }
+    .path-smooth{ animation:none; stroke-dashoffset:0; }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 64px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .section-head h2{
+    font-size: 1.9rem;
+    margin: 0;
+    font-weight: 800;
+  }
+  .section-head .meta{
+    font-family: 'Fraunces', serif;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .about-grid p{
+    font-size: 1.06rem;
+    max-width: 58ch;
+    margin: 0 0 18px;
+  }
+  .stats{
+    display:flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .stat{
+    border-left: 2px solid var(--gold-soft);
+    padding-left: 18px;
+  }
+  .stat .num{
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--ink);
+    display:block;
+  }
+  .stat .label{
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* ---------- PROJECT 1 ---------- */
+  .proj1{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .proj1 h3{ font-size: 1.5rem; margin: 0 0 6px; }
+  .proj1 .sub{ color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+  .proj1 .desc{ max-width: 52ch; margin-bottom: 24px; }
+
+  .role-list{
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display:grid;
+    gap: 8px;
+  }
+  .role-list li{
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.96rem;
+  }
+  .role-list li::before{
+    content: '';
+    position: absolute;
+    left: 0; top: 0.6em;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .tags{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin: 0 0 24px;
+  }
+  .tag{
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    background: var(--paper-deep);
+  }
+
+  .link-row{ display:flex; gap: 18px; flex-wrap: wrap; }
+  .link-row a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  .shot-gallery{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .shot-gallery figure{ margin: 0; }
+  .shot-gallery img{
+    width: 100%;
+    display:block;
+    border: 1px solid var(--line);
+    background: #000;
+  }
+  .shot-gallery figcaption{
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .trouble-box{
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .trouble-box h4{
+    margin: 0 0 14px;
+    font-size: 1rem;
+  }
+  .trouble-box .item{ margin-bottom: 14px; }
+  .trouble-box .item:last-child{ margin-bottom: 0; }
+  .trouble-box .item .t{ font-weight: 600; font-size: 0.93rem; }
+  .trouble-box .item .d{ font-size: 0.89rem; color: var(--muted); margin-top: 2px; }
+
+  /* ---------- PROJECT 2: CASE STUDY ---------- */
+  .case-intro{ max-width: 66ch; font-size: 1.06rem; margin-bottom: 40px; }
+
+  .evolve{
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 48px;
+    padding: 32px;
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+  }
+  .evolve .stage{ display:flex; flex-direction:column; gap:10px; }
+  .evolve .stage .name{ font-family:'Fraunces', serif; font-size:1.4rem; font-weight:600; }
+  .evolve .stage.after .name{ color: var(--gold); }
+  .evolve .stage .meta-line{ font-size: 0.86rem; color: var(--muted); }
+  .evolve .sports{
+    display:flex; flex-wrap:wrap; gap:6px; margin-top: 4px;
+  }
+  .evolve .sports span{
+    font-size: 0.78rem;
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .evolve .arrow{
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  .highlights{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  .hl{
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .hl .t{ font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+  .hl .d{ font-size: 0.94rem; color: var(--muted); }
+  .hl code{
+    background: var(--paper-deep);
+    padding: 1px 6px;
+    font-size: 0.85em;
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- STACK ---------- */
+  .stack-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .stack-cat h4{
+    font-size: 0.95rem;
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .stack-cat ul{
+    list-style: none;
+    margin:0; padding:0;
+    display:flex; flex-direction:column; gap: 8px;
+  }
+  .stack-cat li{
+    font-size: 0.98rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 80px 0 56px;
+    border-top: 1px solid var(--line);
+  }
+  footer .big{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    margin: 0 0 28px;
+    max-width: 18ch;
+  }
+  .contact-row{
+    display:flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .mail-btn{
+    display:inline-block;
+    text-decoration:none;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 14px 26px;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+  .mail-btn:hover{ background: var(--accent-soft); }
+  .foot-links{ display:flex; gap:22px; font-size:0.92rem; }
+  .foot-links a{ text-decoration:none; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .foot-note{ margin-top: 48px; font-size: 0.84rem; color: var(--muted); }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; }
+    .hero-visual{ order: -1; max-width: 260px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .proj1{ grid-template-columns: 1fr; }
+    .evolve{ grid-template-columns: 1fr; text-align:left; }
+    .evolve .arrow{ transform: rotate(90deg); }
+    .highlights{ grid-template-columns: 1fr; }
+    .stack-grid{ grid-template-columns: repeat(2, 1fr); }
+    .wrap, .nav-inner{ padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">문유정</a>
+    <nav class="nav-links">
+      <a href="#work">작업</a>
+      <a href="#stack">기술</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </div>
+</header>
+
+<div id="top" class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div>
+      <h1>문유정</h1>
+      <p class="role en">Frontend Developer</p>
+      <p class="tagline">사용자의 불편함을 지나치지 않고, 직관적이고 매끄러운 UI/UX를 구현합니다.</p>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid meet">
+        <path class="path-rough" d="M20 150 Q 45 80, 70 150 T 120 150 T 170 150 T 220 150 T 270 150"/>
+        <path class="path-smooth" d="M20 150 C 90 150, 200 150, 270 150"/>
+        <circle cx="20" cy="150" r="4" fill="#2e4d3a"/>
+        <circle cx="270" cy="150" r="4" fill="#b8862f"/>
+      </svg>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>소개</h2>
+      <span class="meta en">About</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>협업 과정에서 코드가 꼬이거나 데이터가 어긋나는 순간마다, 문제를 구조적으로 나눠서 다시 짜는 걸 좋아합니다. 관심사를 분리하고 역할을 명확히 할수록 유지보수가 쉬워진다는 걸 실제 트러블슈팅을 거치며 체득했습니다.</p>
+        <p>최근에는 서비스가 확장될 때 UI가 무너지지 않도록 접근성과 성능을 함께 챙기는 데 집중하고 있습니다. 사용자가 눈치채지 못하는 곳까지 매끄럽게 다듬는 일이 제 역할이라고 생각합니다.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="num en">33 → 0</span>
+          <span class="label">Activio 접근성 위반 항목 (axe-core 기준)</span>
+        </div>
+        <div class="stat">
+          <span class="num en">65 → 74</span>
+          <span class="label">Lighthouse Performance 점수 개선</span>
+        </div>
+        <div class="stat">
+          <span class="num en">1,054 → 532줄</span>
+          <span class="label">중복 컴포넌트 통합, 코드 49.5% 감소</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>작업</h2>
+      <span class="meta en">Selected Work</span>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="proj1" id="project-sentence">
+      <div>
+        <h3>Personalized Sentence Curation Site</h3>
+        <div class="sub">팀 문학소녀 · 2026.02.09 – 03.04 · Vanilla JS</div>
+        <p class="desc">사용자가 고른 날씨와 기분에 따라 어울리는 문학 문장을 추천하는 웹 서비스입니다. 프레임워크 없이 HTML·CSS·JS만으로 상태 관리와 API 연동을 직접 구현했습니다.</p>
+
+        <ul class="role-list">
+          <li>Vite 기반 프로젝트 초기 세팅</li>
+          <li>모바일 · PC 반응형 팝업 구현</li>
+          <li>추천 문장 클립보드 복사 기능</li>
+          <li>책 구매 연결 기능</li>
+          <li>중복 로그인 방지, 이메일 유효성 검사, 찜 리스트 즉시 반영 등 리팩토링</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Vite</span>
+          <span class="tag">DOMPurify</span>
+        </div>
+
+        <div class="link-row">
+          <a href="https://vanilla-project-team3.netlify.app/" target="_blank" rel="noopener">배포 사이트 보기</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="shot-gallery">
+          <figure>
+            <img src="images/sentence-main.png" alt="나의 작은 마음 도서관 메인 화면 — 날씨와 기분 이모지를 선택하는 화면">
+            <figcaption>메인 — 날씨 · 기분 선택</figcaption>
+          </figure>
+          <figure>
+            <img src="images/sentence-result.png" alt="기분 선택 후 나오는 문장 추천 결과 화면 — 서점 컨셉의 추천 문장과 도서 목록">
+            <figcaption>결과 — 문장 · 도서 추천</figcaption>
+          </figure>
+        </div>
+
+        <div class="trouble-box">
+        <h4>직접 해결한 이슈</h4>
+        <div class="item">
+          <div class="t">찜하기 시 더미데이터 추가</div>
+          <div class="d">회원가입 API에 heart, viewed 필드가 없어 발생 — 빈 배열을 초기값으로 함께 전송하도록 수정</div>
+        </div>
+        <div class="item">
+          <div class="t">동일 아이디 동시 로그인</div>
+          <div class="d">isLoggedIn 필드로 차단하되, confirm으로 사용자가 강제 로그인 여부를 선택하도록 개선</div>
+        </div>
+        <div class="item">
+          <div class="t">경고 메시지로 인한 레이아웃 밀림</div>
+          <div class="d">hidden 속성 대신 visibility 속성으로 교체해 공간을 유지한 채 텍스트만 노출</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project 2: Case Study -->
+  <section id="project-blackbelt">
+    <div class="section-head">
+      <h2>블랙벨트에서 Activio로</h2>
+      <span class="meta en">Redesign Case Study</span>
+    </div>
+
+    <p class="case-intro">주짓수 수련자만을 위해 만들었던 블랙벨트는 사용해볼수록 한계가 분명했습니다. 무술 종목마다 커뮤니티가 흩어져 있고, 도장을 검증할 방법이 없다는 문제는 주짓수만의 문제가 아니었습니다. 팀은 서비스 범위를 유도·레슬링·복싱·태권도·MMA까지 넓힌 Activio로 다시 설계했고, 저는 이 과정에서 접근성 개선과 캐싱 최적화, 리디자인을 맡았습니다.</p>
+
+    <div class="evolve">
+      <div class="stage before">
+        <span class="name en">Black-Belt</span>
+        <span class="meta-line">2026.04.16 – 05.20 · 4인</span>
+        <span class="meta-line">주짓수 전용 커뮤니티</span>
+        <div class="sports"><span>주짓수</span></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="stage after">
+        <span class="name en">Activio</span>
+        <span class="meta-line">2026.04 – 진행 중 · 4인</span>
+        <span class="meta-line">종합 무술 커뮤니티로 확장</span>
+        <div class="sports">
+          <span>유도</span><span>주짓수</span><span>레슬링</span><span>복싱</span><span>태권도</span><span>MMA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <div class="hl">
+        <div class="t">접근성 전수 개선</div>
+        <div class="d">axe-core로 점검한 위반 33건(ARIA 패턴, 중복 랜드마크, 색상 대비 미달)을 모두 수정해 Lighthouse Accessibility 100점을 달성했습니다.</div>
+      </div>
+      <div class="hl">
+        <div class="t">캐싱 전략 설계 참여</div>
+        <div class="d">공개 데이터는 <code>use cache</code>와 <code>cacheTag</code>로 정적 캐싱하고, 인증이 필요한 데이터는 Suspense 스트리밍으로 분리하는 구조에 참여했습니다.</div>
+      </div>
+      <div class="hl">
+        <div class="t">게시글 · 공유 · 댓글 기능</div>
+        <div class="d">종목별 커뮤니티 게시판의 공유 기능과 댓글 시스템을 구현하고, 도장 홍보 게시글이 노출되는 사이드바를 담당했습니다.</div>
+      </div>
+      <div class="hl">
+        <div class="t">피그마 목업 · 리디자인</div>
+        <div class="d">블랙벨트에서 Activio로 넘어가며 확장된 정보 구조를 반영해 화면 목업을 다시 설계했습니다.</div>
+      </div>
+    </div>
+
+    <div class="tags" style="margin-bottom:28px;">
+      <span class="tag">Next.js 16</span>
+      <span class="tag">React 19</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Tailwind CSS v4</span>
+      <span class="tag">Supabase</span>
+      <span class="tag">TanStack Query</span>
+      <span class="tag">Zustand</span>
+      <span class="tag">Kakao / Naver Map API</span>
+    </div>
+
+    <div class="link-row">
+      <a href="https://activio-red.vercel.app/" target="_blank" rel="noopener">Activio 배포 사이트</a>
+      <a href="https://final-project-team3.vercel.app/" target="_blank" rel="noopener">Black-Belt 배포 사이트</a>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="section-head">
+      <h2>기술</h2>
+      <span class="meta en">Stack</span>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-cat">
+        <h4>언어 · 프레임워크</h4>
+        <ul>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Next.js</li>
+        </ul>
+      </div>
+      <div class="stack-cat">
+        <h4>스타일링</h4>
+        <ul>
+          <li>CSS</li>
+          <li>Tailwind CSS</li>
+          <li>shadcn/ui</li>
+        </ul>
+      </div>
+      <div class="stack-cat">
+        <h4>상태 · 데이터</h4>
+        <ul>
+          <li>Zustand</li>
+          <li>TanStack Query</li>
+          <li>Zod</li>
+          <li>Supabase</li>
+        </ul>
+      </div>
+      <div class="stack-cat">
+        <h4>도구</h4>
+        <ul>
+          <li>Figma</li>
+          <li>Git / GitHub</li>
+          <li>Vite</li>
+          <li>Vercel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="big">같이 매끄럽게 만들어볼까요.</p>
+    <div class="contact-row">
+      <a class="mail-btn" href="mailto:myj9713@gmail.com">이메일 보내기</a>
+      <div class="foot-links">
+        <a href="mailto:myj9713@gmail.com">myj9713@gmail.com</a>
+        <a href="https://github.com/myj9713-dev" target="_blank" rel="noopener">github.com/myj9713-dev</a>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 문유정</p>
+  </div>
+</footer>
+
+</body>
+</html>
