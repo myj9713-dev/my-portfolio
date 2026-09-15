@@ -2,7 +2,7 @@
 
 > 사용자의 불편함을 지나치지 않고, 직관적이고 매끄러운 UI/UX를 구현하는 프론트엔드 개발자 문유정의 포트폴리오입니다.
 
-🔗 **배포 링크**: [https://YOOJEONGM-portfolio.vercel.app](https://YOOJEONGM-portfolio.vercel.app)
+🔗 **배포 링크**: [https://yoojeongm-portfolio.vercel.app/](https://yoojeongm-portfolio.vercel.app/)
 
 ---
 
