@@ -31,11 +31,10 @@
       <p class="tagline">사용자의 불편함을 지나치지 않고, 직관적이고 매끄러운 UI/UX를 구현합니다.</p>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid meet">
-        <path class="path-rough" d="M20 150 Q 45 80, 70 150 T 120 150 T 170 150 T 220 150 T 270 150"/>
-        <path class="path-smooth" d="M20 150 C 90 150, 200 150, 270 150"/>
-        <circle cx="20" cy="150" r="4" fill="#2e4d3a"/>
-        <circle cx="270" cy="150" r="4" fill="#b8862f"/>
+      <svg class="pulse-svg" viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet">
+        <g class="pulse-track">
+          <path class="pulse-line" d="M0,60 L20,60 Q25,48 30,60 L38,60 L44,92 L50,8 L56,96 L62,60 L74,60 Q80,44 86,60 L150,60 L170,60 Q175,48 180,60 L188,60 L194,92 L200,8 L206,96 L212,60 L224,60 Q230,44 236,60 L300,60 L320,60 Q325,48 330,60 L338,60 L344,92 L350,8 L356,96 L362,60 L374,60 Q380,44 386,60 L450,60"/>
+        </g>
       </svg>
     </div>
   </section>
@@ -76,13 +75,14 @@
     <!-- Project 1 -->
     <div class="proj1" id="project-sentence">
       <div>
-        <h3>Personalized Sentence Curation Site</h3>
-        <div class="sub">팀 문학소녀 · 2026.02.09 – 03.04 · Vanilla JS</div>
-        <p class="desc">사용자가 고른 날씨와 기분에 따라 어울리는 문학 문장을 추천하는 웹 서비스입니다. 프레임워크 없이 HTML·CSS·JS만으로 상태 관리와 API 연동을 직접 구현했습니다.</p>
+        <h3>나의 작은 마음 도서관</h3>
+        <div class="sub en" style="font-style:italic; margin-bottom:4px;">Personalized Sentence Curation Site</div>
+        <div class="sub">팀 문학소녀 . 2026.02.09 – 03.04 . Vanilla JS</div>
+        <p class="desc">사용자가 고른 날씨와 기분에 따라 어울리는 문학 문장을 추천하는 웹 서비스입니다. 프레임워크 없이 HTML, CSS, JS만으로 상태 관리와 API 연동을 직접 구현했습니다.</p>
 
         <ul class="role-list">
           <li>Vite 기반 프로젝트 초기 세팅</li>
-          <li>모바일 · PC 반응형 팝업 구현</li>
+          <li>모바일 , PC 반응형 팝업 구현</li>
           <li>추천 문장 클립보드 복사 기능</li>
           <li>책 구매 연결 기능</li>
           <li>중복 로그인 방지, 이메일 유효성 검사, 찜 리스트 즉시 반영 등 리팩토링</li>
@@ -105,11 +105,11 @@
         <div class="shot-gallery">
           <figure>
             <img src="images/sentence-main.png" alt="나의 작은 마음 도서관 메인 화면 — 날씨와 기분 이모지를 선택하는 화면">
-            <figcaption>메인 — 날씨 · 기분 선택</figcaption>
+            <figcaption>메인 — 날씨 . 기분 선택</figcaption>
           </figure>
           <figure>
             <img src="images/sentence-result.png" alt="기분 선택 후 나오는 문장 추천 결과 화면 — 서점 컨셉의 추천 문장과 도서 목록">
-            <figcaption>결과 — 문장 · 도서 추천</figcaption>
+            <figcaption>결과 — 문장 . 도서 추천</figcaption>
           </figure>
         </div>
 
@@ -139,19 +139,19 @@
       <span class="meta en">Redesign Case Study</span>
     </div>
 
-    <p class="case-intro">주짓수 수련자만을 위해 만들었던 블랙벨트는 사용해볼수록 한계가 분명했습니다. 무술 종목마다 커뮤니티가 흩어져 있고, 도장을 검증할 방법이 없다는 문제는 주짓수만의 문제가 아니었습니다. 팀은 서비스 범위를 유도·레슬링·복싱·태권도·MMA까지 넓힌 Activio로 다시 설계했고, 저는 이 과정에서 접근성 개선과 캐싱 최적화, 리디자인을 맡았습니다.</p>
+    <p class="case-intro">주짓수 수련자만을 위해 만들었던 블랙벨트는 사용해볼수록 한계가 분명했습니다. 무술 종목마다 커뮤니티가 흩어져 있고, 도장을 검증할 방법이 없다는 문제는 주짓수만의 문제가 아니었습니다. 팀은 서비스 범위를 유도, 레슬링, 복싱, 태권도, MMA까지 넓힌 Activio로 다시 설계했고, 저는 이 과정에서 접근성 개선과 캐싱 최적화, 리디자인을 맡았습니다.</p>
 
     <div class="evolve">
       <div class="stage before">
         <span class="name en">Black-Belt</span>
-        <span class="meta-line">2026.04.16 – 05.20 · 4인</span>
+        <span class="meta-line">2026.04.16 – 05.20 . 4인</span>
         <span class="meta-line">주짓수 전용 커뮤니티</span>
         <div class="sports"><span>주짓수</span></div>
       </div>
       <div class="arrow">→</div>
       <div class="stage after">
         <span class="name en">Activio</span>
-        <span class="meta-line">2026.04 – 진행 중 · 4인</span>
+        <span class="meta-line">2026.04 – 진행 중 . 4인</span>
         <span class="meta-line">종합 무술 커뮤니티로 확장</span>
         <div class="sports">
           <span>유도</span><span>주짓수</span><span>레슬링</span><span>복싱</span><span>태권도</span><span>MMA</span>
@@ -162,11 +162,11 @@
     <div class="ba-shots">
       <figure>
         <img src="images/blackbelt-community.png" alt="블랙벨트 커뮤니티 화면 — 밝은 톤에 주짓수 게시글만 노출되는 목록">
-        <figcaption><span class="ba-tag before">Before</span> Black-Belt · 커뮤니티</figcaption>
+        <figcaption><span class="ba-tag before">Before</span> Black-Belt . 커뮤니티</figcaption>
       </figure>
       <figure>
         <img src="images/activio-community.png" alt="Activio 커뮤니티 화면 — 다크 테마와 종목별 사이드 탭이 추가된 목록">
-        <figcaption><span class="ba-tag after">After</span> Activio · 커뮤니티</figcaption>
+        <figcaption><span class="ba-tag after">After</span> Activio . 커뮤니티</figcaption>
       </figure>
     </div>
 
@@ -195,11 +195,11 @@
         <div class="d">공개 데이터는 <code>use cache</code>와 <code>cacheTag</code>로 정적 캐싱하고, 인증이 필요한 데이터는 Suspense 스트리밍으로 분리하는 구조에 참여했습니다.</div>
       </div>
       <div class="hl">
-        <div class="t">게시글 · 공유 · 댓글 기능</div>
+        <div class="t">게시글 . 공유 . 댓글 기능</div>
         <div class="d">종목별 커뮤니티 게시판의 공유 기능과 댓글 시스템을 구현하고, 도장 홍보 게시글이 노출되는 사이드바를 담당했습니다.</div>
       </div>
       <div class="hl">
-        <div class="t">피그마 목업 · 리디자인</div>
+        <div class="t">피그마 목업 . 리디자인</div>
         <div class="d">블랙벨트에서 Activio로 넘어가며 확장된 정보 구조를 반영해 화면 목업을 다시 설계했습니다.</div>
       </div>
     </div>
@@ -228,7 +228,7 @@
     </div>
     <div class="stack-grid">
       <div class="stack-cat">
-        <h4>언어 · 프레임워크</h4>
+        <h4>언어 . 프레임워크</h4>
         <ul>
           <li>JavaScript</li>
           <li>TypeScript</li>
@@ -245,7 +245,7 @@
         </ul>
       </div>
       <div class="stack-cat">
-        <h4>상태 · 데이터</h4>
+        <h4>상태 . 데이터</h4>
         <ul>
           <li>Zustand</li>
           <li>TanStack Query</li>
